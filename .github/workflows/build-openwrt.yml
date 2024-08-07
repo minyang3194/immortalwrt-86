@@ -110,7 +110,7 @@ jobs:
     - name: luci-app-romupdate
       run: |
         cd openwrt/package    
-        git clone -b immor https://github.com/Blueplanet20120/luci-app-romupdate.git
+        git clone -b immor https://github.com/minyang3194/luci-app-romupdate.git
    
     - name: lenyu
       run: |
