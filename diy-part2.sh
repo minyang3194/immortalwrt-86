@@ -24,17 +24,3 @@ cp -rf istore/luci/luci-app-store package/luci-app-store
 sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 #rm -rf istore-ui istore
 
-#添加luci-app-amlogic
-git clone --depth=1 https://github.com/ophub/luci-app-amlogic.git
-cp -rf luci-app-amlogic/luci-app-amlogic package/luci-app-amlogic
-#rm -rf luci-app-amlogic
-
-#修改晶晨宝盒默认配置
-# 1.Set the download repository of the OpenWrt files to your github.com
-sed -i "s|https.*/OpenWrt|https://github.com/HoldOnBro/Actions-OpenWrt|g" package/luci-app-amlogic/root/etc/config/amlogic
-# 2.Set the keywords of Tags in your github.com Releases
-#sed -i "s|ARMv8|ARMv8|g" package/luci-app-amlogic/root/etc/config/amlogic
-# 3.Set the suffix of the OPENWRT files in your github.com Releases
-sed -i "s|.img.gz|_FOL+SFE.img.gz|g" package/luci-app-amlogic/root/etc/config/amlogic
-# 4.Set the download path of the kernel in your github.com repository
-sed -i "s|opt/kernel|BuildARMv8|g" package/luci-app-amlogic/root/etc/config/amlogic
