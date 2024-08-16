@@ -16,6 +16,17 @@ sed -i 's/192.168.1.1/192.168.2.99/g' package/base-files/files/bin/config_genera
 #sed -i "s/.*PKG_VERSION:=.*/PKG_VERSION:=4.3.9_v1.2.14/" package/lean/qBittorrent-static/Makefile
 # welcome test 
 
+### 获取额外的基础软件包 ###
+# 更换为 ImmortalWrt Uboot 以及 Target
+rm -rf ./target/linux/rockchip
+cp -rf ../immortalwrt_23/target/linux/rockchip ./target/linux/rockchip
+cp -rf ../PATCH/rockchip-5.15/* ./target/linux/rockchip/patches-5.15/
+rm -rf ./package/boot/uboot-rockchip
+cp -rf ../immortalwrt_23/package/boot/uboot-rockchip ./package/boot/uboot-rockchip
+rm -rf ./package/boot/arm-trusted-firmware-rockchip
+cp -rf ../immortalwrt_23/package/boot/arm-trusted-firmware-rockchip ./package/boot/arm-trusted-firmware-rockchip
+sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
+
 # 8-增固件连接数
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
