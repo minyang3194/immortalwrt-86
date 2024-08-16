@@ -27,6 +27,21 @@ rm -rf ./package/boot/arm-trusted-firmware-rockchip
 cp -rf ../immortalwrt_23/package/boot/arm-trusted-firmware-rockchip ./package/boot/arm-trusted-firmware-rockchip
 sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/upgrade/platform.sh
 
+# AutoCore
+cp -rf ../immortalwrt_23/package/emortal/autocore ./package/new/autocore
+sed -i 's/"getTempInfo" /"getTempInfo", "getCPUBench", "getCPUUsage" /g' package/new/autocore/files/luci-mod-status-autocore.json
+cp -rf ../OpenWrt-Add/autocore/files/x86/autocore ./package/new/autocore/files/autocore
+sed -i '/i386 i686 x86_64/{n;n;n;d;}' package/new/autocore/Makefile
+sed -i '/i386 i686 x86_64/d' package/new/autocore/Makefile
+rm -rf ./feeds/luci/modules/luci-base
+cp -rf ../immortalwrt_luci_23/modules/luci-base ./feeds/luci/modules/luci-base
+sed -i "s,(br-lan),,g" feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
+rm -rf ./feeds/luci/modules/luci-mod-status
+cp -rf ../immortalwrt_luci_23/modules/luci-mod-status ./feeds/luci/modules/luci-mod-status
+rm -rf ./feeds/packages/utils/coremark
+cp -rf ../sbw_pkg/coremark ./feeds/packages/utils/coremark
+cp -rf ../immortalwrt_23/package/utils/mhz ./package/utils/mhz
+
 # 8-增固件连接数
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
