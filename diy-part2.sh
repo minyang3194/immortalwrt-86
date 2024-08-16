@@ -19,15 +19,7 @@ sed -i 's/192.168.1.1/192.168.2.99/g' package/base-files/files/bin/config_genera
 # 8-增固件连接数
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
-#添加istore
-git clone --depth=1 https://github.com/linkease/istore-ui.git
-cp -rf istore-ui/app-store-ui package/app-store-ui
-git clone --depth=1 https://github.com/linkease/istore.git
-cp -rf istore/luci/luci-app-store package/luci-app-store
-sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
-#rm -rf istore-ui istore
 
-/bin/bash
 # istore
 echo >> feeds.conf.default
 echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
