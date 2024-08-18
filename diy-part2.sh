@@ -42,4 +42,5 @@ pushd package/new
 wget -qO - https://github.com/Lienol/openwrt-package/pull/39.patch | patch -p1
 popd
 sed -i '/socat\.config/d' feeds/packages/net/socat/Makefile
+git clone 
 
