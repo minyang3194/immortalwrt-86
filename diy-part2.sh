@@ -37,10 +37,10 @@ wget -qO- $GEOSITE_URL > $goe_path/GeoSite.dat
 chmod +x $core_path/clash*
 
 # socat
-#cp -rf ../Lienol_pkg/luci-app-socat ./package/new/luci-app-socat
-#pushd package/new
-#wget -qO - https://github.com/Lienol/openwrt-package/pull/39.patch | patch -p1
-#popd
-#sed -i '/socat\.config/d' feeds/packages/net/socat/Makefile
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-socat
+cp -rf ../Lienol_pkg/luci-app-socat ./package/new/luci-app-socat
+pushd package/new
+wget -qO - https://github.com/Lienol/openwrt-package/pull/39.patch | patch -p1
+popd
+sed -i '/socat\.config/d' feeds/packages/net/socat/Makefile
+
 
