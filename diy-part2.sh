@@ -42,5 +42,5 @@ chmod +x $core_path/clash*
 #wget -qO - https://github.com/Lienol/openwrt-package/pull/39.patch | patch -p1
 #popd
 #sed -i '/socat\.config/d' feeds/packages/net/socat/Makefile
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-aliddns
+git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-socat
 
