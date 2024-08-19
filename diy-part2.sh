@@ -43,4 +43,7 @@ wget -qO - https://github.com/Lienol/openwrt-package/pull/39.patch | patch -p1
 popd
 sed -i '/socat\.config/d' feeds/packages/net/socat/Makefile
 
+# 8-增固件连接数
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
+
 
