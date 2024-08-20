@@ -112,6 +112,16 @@ jobs:
         cd openwrt/package    
         git clone -b immor https://github.com/Blueplanet20120/luci-app-romupdate.git
    
+    - name: luci-app-advanced
+      run: |
+        cd openwrt/package
+        git clone https://github.com/sirpdboy/luci-app-advanced
+
+    - name: luci-app-autotimeset
+      run: |
+        cd openwrt/package
+        git clone https://github.com/sirpdboy/luci-app-autotimeset
+   
     - name: lenyu
       run: |
         cd openwrt 
