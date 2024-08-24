@@ -7,6 +7,28 @@
 # https://github.com/P3TERX/Actions-OpenWrt
 # Description: Build OpenWrt using GitHub Actions
 #
+clone_repo() {
+  # 参数1是仓库地址，参数2是分支名，参数3是目标目录
+  repo_url=$1
+  branch_name=$2
+  target_dir=$3
+  # 克隆仓库到目标目录，并指定分支名和深度为1
+  git clone -b $branch_name --depth 1 $repo_url $target_dir
+}
+# 定义一些变量，存储仓库地址和分支名
+sirpdboy_repo="https://github.com/sirpdboy/sirpdboy-package"
+# 开始克隆仓库，并行执行
+clone_repo $sirpdboy_repo main sirpdboy &
+# 等待所有后台任务完成
+wait
+# 进行一些处理
+find openwrt/package/* -maxdepth 0 ! -name 'firmware' ! -name 'kernel' ! -name 'base-files' ! -name 'Makefile' -exec rm -rf {} +
+rm -rf ./openwrt_snap/package/firmware ./openwrt_snap/package/kernel ./openwrt_snap/package/base-files ./openwrt_snap/package/Makefile
+cp -rf ./openwrt_snap/package/* ./openwrt/package/
+cp -rf ./openwrt_snap/feeds.conf.default ./openwrt/feeds.conf.default
+
+# 退出脚本
+exit 0
 
 name: Build OpenWrt
 
@@ -117,19 +139,32 @@ jobs:
         cd openwrt/package
         git clone https://github.com/sirpdboy/luci-app-advanced
 
-    - name: luci-app-autotimeset
-      run: |
-        cd openwrt/package
-        git clone https://github.com/sirpdboy/luci-app-autotimeset
-        sed -i 's,"control","system",g' package/sirpdboy/luci-app-autotimeset/luasrc/controller/autotimeset.lua
-        sed -i '/firstchild/d' package/sirpdboy/luci-app-autotimeset/luasrc/controller/autotimeset.lua
-        sed -i 's,control,system,g' package/sirpdboy/luci-app-autotimeset/luasrc/view/autotimeset/log.htm
-        sed -i '/start()/a \    echo "Service autotimesetrun started!" >/dev/null' package/sirpdboy/luci-app-autotimeset/root/etc/init.d/autotimesetrun
-        rm -rf ./package/sirpdboy/luci-app-autotimeset/po/zh_Hans
-        cp -rf ../sirpdboy/luci-app-partexp ./package/sirpdboy/luci-app-partexp
-        rm -rf ./package/sirpdboy/luci-app-partexp/po/zh_Hans
-        sed -i 's, - !, -o !,g' package/sirpdboy/luci-app-partexp/root/etc/init.d/partexp
-        sed -i 's,expquit 1 ,#expquit 1 ,g' package/sirpdboy/luci-app-partexp/root/etc/init.d/partexp
+    #- name: luci-app-autotimeset
+    #  run: |
+    #    cd openwrt/package
+    #    git clone https://github.com/sirpdboy/luci-app-autotimeset
+    #    sed -i 's,"control","system",g' package/sirpdboy/luci-app-autotimeset/luasrc/controller/autotimeset.lua
+    #    sed -i '/firstchild/d' package/sirpdboy/luci-app-autotimeset/luasrc/controller/autotimeset.lua
+    #    sed -i 's,control,system,g' package/sirpdboy/luci-app-autotimeset/luasrc/view/autotimeset/log.htm
+   #     sed -i '/start()/a \    echo "Service autotimesetrun started!" >/dev/null' package/sirpdboy/luci-app-autotimeset/root/etc/init.d/autotimesetrun
+   #     rm -rf ./package/sirpdboy/luci-app-autotimeset/po/zh_Hans
+   #     cp -rf ../sirpdboy/luci-app-partexp ./package/sirpdboy/luci-app-partexp
+   #     rm -rf ./package/sirpdboy/luci-app-partexp/po/zh_Hans
+   #     sed -i 's, - !, -o !,g' package/sirpdboy/luci-app-partexp/root/etc/init.d/partexp
+   #     sed -i 's,expquit 1 ,#expquit 1 ,g' package/sirpdboy/luci-app-partexp/root/etc/init.d/partexp
+   - name: luci-app-autotimeset
+     run: |
+       mkdir -p package/sirpdboy
+       cp -rf ../sirpdboy/luci-app-autotimeset ./package/sirpdboy/luci-app-autotimeset
+       sed -i 's,"control","system",g' package/sirpdboy/luci-app-autotimeset/luasrc/controller/autotimeset.lua
+       sed -i '/firstchild/d' package/sirpdboy/luci-app-autotimeset/luasrc/controller/autotimeset.lua
+       sed -i 's,control,system,g' package/sirpdboy/luci-app-autotimeset/luasrc/view/autotimeset/log.htm
+       sed -i '/start()/a \    echo "Service autotimesetrun started!" >/dev/null' package/sirpdboy/luci-app-autotimeset/root/etc/init.d/autotimesetrun
+       rm -rf ./package/sirpdboy/luci-app-autotimeset/po/zh_Hans
+       cp -rf ../sirpdboy/luci-app-partexp ./package/sirpdboy/luci-app-partexp
+       rm -rf ./package/sirpdboy/luci-app-partexp/po/zh_Hans
+       sed -i 's, - !, -o !,g' package/sirpdboy/luci-app-partexp/root/etc/init.d/partexp
+       sed -i 's,expquit 1 ,#expquit 1 ,g' package/sirpdboy/luci-app-partexp/root/etc/init.d/partexp
    
     - name: lenyu
       run: |
