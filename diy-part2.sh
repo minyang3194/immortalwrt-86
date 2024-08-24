@@ -16,21 +16,6 @@ sed -i 's/192.168.1.1/192.168.2.99/g' package/base-files/files/bin/config_genera
 #sed -i "s/.*PKG_VERSION:=.*/PKG_VERSION:=4.3.9_v1.2.14/" package/lean/qBittorrent-static/Makefile
 # welcome test
 
-# AutoCore
-cp -rf ../immortalwrt_23/package/emortal/autocore ./package/new/autocore
-sed -i 's/"getTempInfo" /"getTempInfo", "getCPUBench", "getCPUUsage" /g' package/new/autocore/files/luci-mod-status-autocore.json
-cp -rf ../OpenWrt-Add/autocore/files/x86/autocore ./package/new/autocore/files/autocore
-sed -i '/i386 i686 x86_64/{n;n;n;d;}' package/new/autocore/Makefile
-sed -i '/i386 i686 x86_64/d' package/new/autocore/Makefile
-rm -rf ./feeds/luci/modules/luci-base
-cp -rf ../immortalwrt_luci_23/modules/luci-base ./feeds/luci/modules/luci-base
-sed -i "s,(br-lan),,g" feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
-rm -rf ./feeds/luci/modules/luci-mod-status
-cp -rf ../immortalwrt_luci_23/modules/luci-mod-status ./feeds/luci/modules/luci-mod-status
-rm -rf ./feeds/packages/utils/coremark
-cp -rf ../sbw_pkg/coremark ./feeds/packages/utils/coremark
-cp -rf ../immortalwrt_23/package/utils/mhz ./package/utils/mhz
-
 # 预置Clash内核
 echo -e "预置Clash内核"
 mkdir -p package/luci-app-openclash/root/etc/openclash/core
