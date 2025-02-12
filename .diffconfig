@@ -222,3 +222,96 @@ CONFIG_boost-compile-visibility-hidden=y
 CONFIG_boost-runtime-shared=y
 CONFIG_boost-static-and-shared-libs=y
 CONFIG_boost-variant-release=y
+
+### DDNS ###
+CONFIG_PACKAGE_luci-app-ddns=y
+CONFIG_PACKAGE_ddns-scripts=y
+CONFIG_PACKAGE_ddns-scripts-cloudflare=y
+CONFIG_PACKAGE_ddns-scripts-dnspod=y
+CONFIG_PACKAGE_ddns-scripts-services=y
+CONFIG_PACKAGE_ddns-scripts-aliyun=y
+CONFIG_PACKAGE_bind-host=y
+
+### LUCI ###
+CONFIG_LUCI_LANG_zh_Hans=y
+CONFIG_LUCI_LANG_en=y
+# CONFIG_LUCI_CSSTIDY is not set
+# CONFIG_LUCI_JSMIN is not set
+CONFIG_PACKAGE_luci-nginx=y
+CONFIG_PACKAGE_luci-compat=y
+
+### APPLICATION ###
+CONFIG_PACKAGE_luci-app-homeproxy=y
+CONFIG_PACKAGE_luci-app-ap-modem=y
+CONFIG_PACKAGE_luci-proto-wireguard=y
+CONFIG_PACKAGE_qrencode=y
+CONFIG_PACKAGE_luci-app-socat=y
+CONFIG_PACKAGE_luci-app-argon-config=y
+CONFIG_PACKAGE_luci-app-arpbind=y
+CONFIG_PACKAGE_luci-app-autotimeset=y
+CONFIG_PACKAGE_luci-app-partexp=y
+CONFIG_PACKAGE_luci-app-airconnect=y
+CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-cpufreq=y
+CONFIG_PACKAGE_luci-app-cpulimit=y
+CONFIG_PACKAGE_luci-app-frpc=y
+CONFIG_PACKAGE_frpc=y
+CONFIG_PACKAGE_luci-app-frps=y
+CONFIG_PACKAGE_frps=y
+CONFIG_PACKAGE_luci-app-openclash=y
+CONFIG_PACKAGE_luci-app-opkg=y
+CONFIG_PACKAGE_luci-app-ramfree=y
+CONFIG_PACKAGE_luci-app-wechatpush=y
+CONFIG_PACKAGE_luci-app-sqm=y
+CONFIG_PACKAGE_luci-app-vlmcsd=y
+CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
+CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_luci-app-usb-printer=y
+CONFIG_PACKAGE_luci-app-services-wolplus=y
+CONFIG_PACKAGE_luci-app-wrtbwmon=y
+CONFIG_PACKAGE_luci-app-xlnetacc=y
+CONFIG_PACKAGE_luci-app-zerotier=y
+CONFIG_PACKAGE_luci-app-watchcat=y
+CONFIG_PACKAGE_luci-app-natmapt=y
+CONFIG_PACKAGE_stuntman-client=y
+CONFIG_PACKAGE_luci-app-oaf=y
+CONFIG_PACKAGE_zerotier=y
+CONFIG_PACKAGE_coremark=y
+CONFIG_PACKAGE_htop=y
+CONFIG_PACKAGE_subconverter=y
+CONFIG_PACKAGE_kmod-shortcut-fe-cm=y
+# CONFIG_PACKAGE_natflow-boot=y
+CONFIG_PACKAGE_luci-app-mihomo=y
+CONFIG_PACKAGE_luci-app-filemanager=y
+
+### THEME ###
+CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-theme-bootstrap=y
+
+### OPENSSL ###
+CONFIG_OPENSSL_ENGINE=y
+CONFIG_OPENSSL_OPTIMIZE_SPEED=y
+CONFIG_OPENSSL_WITH_ASM=y
+# CONFIG_OPENSSL_WITH_ERROR_MESSAGES is not set
+CONFIG_PACKAGE_libopenssl-conf=y
+CONFIG_PACKAGE_libopenssl-devcrypto=y
+CONFIG_PACKAGE_libopenssl-legacy=y
+CONFIG_PACKAGE_libcurl=y
+CONFIG_LIBCURL_OPENSSL=y
+# CONFIG_LIBCURL_MBEDTLS is not set
+# CONFIG_LIBCURL_WOLFSSL is not set
+# CONFIG_LIBCURL_GNUTLS is not set
+# CONFIG_LIBCURL_NOSSL is not set
+
+### DOCKER ###
+CONFIG_PACKAGE_luci-app-dockerman=y
+CONFIG_PACKAGE_luci-app-diskman=y
+CONFIG_PACKAGE_block-mount=y
+CONFIG_DOCKER_CGROUP_OPTIONS=y
+CONFIG_DOCKER_OPTIONAL_FEATURES=y
+CONFIG_DOCKER_NET_ENCRYPT=y
+CONFIG_DOCKER_NET_MACVLAN=y
+CONFIG_DOCKER_NET_OVERLAY=y
+CONFIG_DOCKER_NET_TFTP=y
+CONFIG_DOCKER_STO_BTRFS=y
+CONFIG_DOCKER_STO_EXT4=y
